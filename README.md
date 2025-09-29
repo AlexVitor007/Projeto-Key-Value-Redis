@@ -1,145 +1,80 @@
-# 🚀 Projeto-Key-Value-Redis  
+# 🔑 Projeto Key-Value Redis
 
-## 📌 Descrição  
-Este projeto explora o uso de **bancos de dados NoSQL (Redis)** aplicando o modelo **Key-Value Pair (KVP)**.  
+## 📌 Descrição
+Este projeto tem como objetivo explorar o uso de bancos de dados **NoSQL (Redis)** aplicando o modelo **Key-Value Pair (KVP)**.  
 
-- Objetivo: modelar, armazenar e consultar informações de usuários e seus rankings de filmes favoritos.  
-- Estruturas utilizadas: **Hash** e **Sorted Set** do Redis.  
-- Ambiente configurado em **AWS EC2 (Windows 11)** com:  
-  - Redis for Windows  
-  - Python 3.x  
-  - Visual Studio Code  
-  - Ambiente virtual (venv)  
+A missão foi **modelar, armazenar e consultar informações de usuários e seus rankings de filmes favoritos**, utilizando estruturas de dados próprias do Redis como **Hash** e **Sorted Set**.  
 
----
-
-## 🎯 Missão  
-- Modelar informações do cenário usando pares **chave/valor**.  
+O ambiente foi configurado em uma instância **EC2 Windows 11 (AWS Cloud)**, com as seguintes ferramentas:  
+- 🗄️ Redis for Windows (com **Memurai for Redis** para client)  
+- 🐍 Python 3.17  
+- 💻 Visual Studio Code  
+- 🌱 Ambiente virtual (venv)  
 
 ---
 
-## 🗂️ Modelagem  
+## 🎯 Missão
+> Modelar as informações do cenário usando pares de chave/valor.
 
-- **Perfil do usuário (Hash - HSET)**  
-  ```bash
-  usuario:1001 = {nome: "Ana", idade: 25, cidade: "Recife"}
-Ranking de filmes favoritos (Sorted Set - ZADD)
+---
 
-bash
-Copiar código
+## 🗂️ Modelagem
+
+### 👤 Perfil do usuário
+O perfil foi modelado usando **Hash (HSET)**, contendo atributos como `nome`, `idade` e `cidade`.
+
+📍 Exemplo:
+```txt
+usuario:1001 = {nome: "Ana", idade: 25, cidade: "Recife"}
+```
+🎬 Ranking de filmes
+
+O ranking foi modelado usando Sorted Set (ZADD), associando a posição de cada filme ao seu título.
+
+📍 Exemplo:
+```txt
 usuario:1001:ranking = {"O Poderoso Chefão": 1, "Interestelar": 2, "Matrix": 3}
+```
 🛠️ Implementação
-Configuração no Windows EC2
+📌 Instalação do Redis no Windows EC2
 
-Criada instância Windows 11 na AWS
+1. Criada uma instância EC2 Windows 11 na AWS.
+2. Instalado o Redis for Windows.
+3. Implementado o Memurai for Redis para utilização do client.
+4. Configurado para execução local via:
+```cmd
+redis-server.exe
+```
+5. Testado o funcionamento:
+```cmd
+redis-cli.exe ping
+```
+✅ Resposta esperada: PONG
 
-Instalação do Redis for Windows
+📌 Desenvolvimento em Python (VS Code)
 
-Implementação do Memurai for Redis para cliente
+- Instalação do Python 3.17
 
-Execução local via redis-server.exe
+- Criação do ambiente virtual (venv)
 
-Teste de funcionamento: redis-cli.exe ping
-
-Desenvolvimento em Python (VS Code)
-
-Instalação do Python 3.x
-
-Criação de ambiente virtual (venv)
-
-Instalação da biblioteca Redis:
-
-bash
-Copiar código
+- Instalação da biblioteca Redis:
+```cmd
 pip install redis
-Estrutura modularizada:
+```
+📂 Estrutura modularizada:
 
-app.py → código principal
+- app.py → código principal
 
-funcoes.py → funções de manipulação dos dados
+- funcoes.py → funções auxiliares
 
-Usuários cadastrados (exemplo):
+👥 Inserção de dados de usuários
 
+- Foram cadastrados os seguintes exemplos:
+```txt
 Ana (Recife)
 
 Carlos (São Paulo)
 
 Maria (Rio de Janeiro)
+```
 
-🔎 Consultas
-Recuperar perfil do usuário
-
-bash
-Copiar código
-HGETALL usuario:1001
-Ou em Python:
-
-python
-Copiar código
-obter_perfil(user_id)
-Listar ranking de filmes
-
-bash
-Copiar código
-ZRANGE usuario:1001:ranking 0 -1 WITHSCORES
-Ou em Python:
-
-python
-Copiar código
-obter_ranking(user_id)
-📂 Estrutura do Projeto
-Copiar código
-📦 projeto-redis-kvp
- ┣ 📂 venv/      
- ┣ 📜 app.py 
- ┣ 📜 funcoes.py    
- ┗ 📜 README.md        
-🚀 Como Executar no Windows EC2
-1️⃣ Iniciar o Redis
-
-bash
-Copiar código
-redis-server.exe
-2️⃣ Ativar o ambiente virtual
-
-bash
-Copiar código
-venv\Scripts\activate
-3️⃣ Executar o projeto
-
-bash
-Copiar código
-python app.py
-📌 Exemplo de Saída
-yaml
-Copiar código
-Perfil do usuário 1001:
-Nome: Ana
-Idade: 25
-Cidade: Recife
-
-Ranking de filmes:
-1 - O Poderoso Chefão
-2 - Interestelar
-3 - Matrix
-🧑‍💻 Tecnologias Utilizadas
-Python 3.17
-
-Redis NoSQL for Windows
-
-AWS EC2 (Windows 11)
-
-Visual Studio Code
-
-📘 O que foi aprendido
-✅ Configuração de instância EC2 Windows 11 na AWS
-
-✅ Instalação e execução do Redis no Windows
-
-✅ Uso de venv para gerenciamento de ambientes Python
-
-✅ Modelagem de dados no Redis com Hash e Sorted Set
-
-✅ Criação de funções Python para salvar, recuperar e exibir dados
-
-✅ Consultas chave/valor para perfis e rankings
