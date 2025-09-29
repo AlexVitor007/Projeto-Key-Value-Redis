@@ -1,81 +1,64 @@
-# 🔑 Projeto Key-Value Redis
+# 🚀 Projeto-Key-Value-Redis  
 
-## 📌 Descrição
-Este projeto tem como objetivo explorar o uso de bancos de dados **NoSQL (Redis)** aplicando o modelo **Key-Value Pair (KVP)**.  
+## 📌 Descrição  
+Este projeto explora o uso de **bancos de dados NoSQL (Redis)** aplicando o modelo **Key-Value Pair (KVP)**.  
 
-A missão foi **modelar, armazenar e consultar informações de usuários e seus rankings de filmes favoritos**, utilizando estruturas de dados próprias do Redis como **Hash** e **Sorted Set**.  
-
-O ambiente foi configurado em uma instância **EC2 Windows 11 (AWS Cloud)**, com as seguintes ferramentas:  
-- 🗄️ Redis for Windows (com **Memurai for Redis** para client)  
-- 🐍 Python 3.17  
-- 💻 Visual Studio Code  
-- 🌱 Ambiente virtual (venv)  
-
----
-
-## 🎯 Missão
-> Modelar as informações do cenário usando pares de chave/valor.
+- Objetivo: modelar, armazenar e consultar informações de usuários e seus rankings de filmes favoritos.  
+- Estruturas utilizadas: **Hash** e **Sorted Set** do Redis.  
+- Ambiente configurado em **AWS EC2 (Windows 11)** com:  
+  - Redis for Windows  
+  - Python 3.x  
+  - Visual Studio Code  
+  - Ambiente virtual (venv)  
 
 ---
 
-## 🗂️ Modelagem
+## 🎯 Missão  
+- Modelar informações do cenário usando pares **chave/valor**.  
 
-### 👤 Perfil do usuário
-O perfil foi modelado usando **Hash (HSET)**, contendo atributos como `nome`, `idade` e `cidade`.
+---
 
-📍 Exemplo:
-```txt
-usuario:1001 = {nome: "Ana", idade: 25, cidade: "Recife"}
+## 🗂️ Modelagem  
 
-🎬 Ranking de filmes
+- **Perfil do usuário (Hash - HSET)**  
+  ```bash
+  usuario:1001 = {nome: "Ana", idade: 25, cidade: "Recife"}
+Ranking de filmes favoritos (Sorted Set - ZADD)
 
-O ranking foi modelado usando Sorted Set (ZADD), associando a posição de cada filme ao seu título.
-
-📍 Exemplo:
-
+bash
+Copiar código
 usuario:1001:ranking = {"O Poderoso Chefão": 1, "Interestelar": 2, "Matrix": 3}
-
 🛠️ Implementação
-📌 Instalação do Redis no Windows EC2
+Configuração no Windows EC2
 
-Criada uma instância EC2 Windows 11 na AWS.
+Criada instância Windows 11 na AWS
 
-Instalado o Redis for Windows.
+Instalação do Redis for Windows
 
-Implementado o Memurai for Redis para utilização do client.
+Implementação do Memurai for Redis para cliente
 
-Configurado para execução local via:
+Execução local via redis-server.exe
 
-redis-server.exe
+Teste de funcionamento: redis-cli.exe ping
 
+Desenvolvimento em Python (VS Code)
 
-Testado o funcionamento:
+Instalação do Python 3.x
 
-redis-cli.exe ping
-
-
-✅ Resposta esperada: PONG
-
-📌 Desenvolvimento em Python (VS Code)
-
-Instalação do Python 3.17
-
-Criação do ambiente virtual (venv)
+Criação de ambiente virtual (venv)
 
 Instalação da biblioteca Redis:
 
+bash
+Copiar código
 pip install redis
-
-
-📂 Estrutura modularizada:
+Estrutura modularizada:
 
 app.py → código principal
 
-funcoes.py → funções auxiliares
+funcoes.py → funções de manipulação dos dados
 
-👥 Inserção de dados de usuários
-
-Foram cadastrados os seguintes exemplos:
+Usuários cadastrados (exemplo):
 
 Ana (Recife)
 
@@ -84,48 +67,52 @@ Carlos (São Paulo)
 Maria (Rio de Janeiro)
 
 🔎 Consultas
+Recuperar perfil do usuário
 
-Recuperar o perfil de um usuário específico
-
-Redis:
-
+bash
+Copiar código
 HGETALL usuario:1001
+Ou em Python:
 
+python
+Copiar código
+obter_perfil(user_id)
+Listar ranking de filmes
 
-Python:
-
-obter_perfil("1001")
-
-
-Listar o ranking de filmes de um usuário
-
-Redis:
-
+bash
+Copiar código
 ZRANGE usuario:1001:ranking 0 -1 WITHSCORES
+Ou em Python:
 
-
-Python:
-
-obter_ranking("1001")
-
+python
+Copiar código
+obter_ranking(user_id)
 📂 Estrutura do Projeto
+Copiar código
 📦 projeto-redis-kvp
- ┣ 📂 venv/          # Ambiente virtual Python
- ┣ 📜 app.py         # Código principal
- ┣ 📜 funcoes.py     # Funções auxiliares para Redis
- ┗ 📜 README.md      # Documentação
-
+ ┣ 📂 venv/      
+ ┣ 📜 app.py 
+ ┣ 📜 funcoes.py    
+ ┗ 📜 README.md        
 🚀 Como Executar no Windows EC2
 1️⃣ Iniciar o Redis
+
+bash
+Copiar código
 redis-server.exe
-
 2️⃣ Ativar o ambiente virtual
+
+bash
+Copiar código
 venv\Scripts\activate
-
 3️⃣ Executar o projeto
-python app.py
 
+bash
+Copiar código
+python app.py
 📌 Exemplo de Saída
+yaml
+Copiar código
 Perfil do usuário 1001:
 Nome: Ana
 Idade: 25
@@ -135,24 +122,24 @@ Ranking de filmes:
 1 - O Poderoso Chefão
 2 - Interestelar
 3 - Matrix
-
 🧑‍💻 Tecnologias Utilizadas
+Python 3.17
 
-🐍 Python 3.17
+Redis NoSQL for Windows
 
-🗄️ Redis NoSQL for Windows
+AWS EC2 (Windows 11)
 
-☁️ AWS EC2 (Windows 11)
-
-💻 Visual Studio Code
+Visual Studio Code
 
 📘 O que foi aprendido
+✅ Configuração de instância EC2 Windows 11 na AWS
 
-Durante o desenvolvimento deste projeto, foram absorvidos os seguintes conceitos:
-
-✅ Configuração de uma instância EC2 Windows 11 na AWS
 ✅ Instalação e execução do Redis no Windows
-✅ Uso de venv para gerenciar ambientes Python
-✅ Modelagem de dados no Redis usando Hash e Sorted Set
+
+✅ Uso de venv para gerenciamento de ambientes Python
+
+✅ Modelagem de dados no Redis com Hash e Sorted Set
+
 ✅ Criação de funções Python para salvar, recuperar e exibir dados
-✅ Implementação de consultas chave/valor para perfis e rankings
+
+✅ Consultas chave/valor para perfis e rankings
