@@ -1,7 +1,7 @@
 import redis
 from funcoes import *
 
-r = redis.Redis(host="localhost", port=6379, db=0, decode_responses=True)
+r = redis.Redis(host="127.0.0.1", port=6379, db=0, decode_responses=True)
 
 usuarios = {
     "1001": {"nome": "Ana", "idade": 25, "cidade": "Recife",
