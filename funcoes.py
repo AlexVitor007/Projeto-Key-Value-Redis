@@ -10,7 +10,7 @@ def salvar_usuario(user_id, dados):
     })
 
 
-    chave_Ranking = f"usuario:{user_id}:ranking"
+    chave_Ranking = f"usuario:{user_id}:ranking_Filmes"
     r.delete(chave_Ranking) 
     for filme, posicao in dados["ranking_filmes"]:
         r.zadd(chave_Ranking, {filme: posicao})
@@ -21,7 +21,7 @@ def obter_perfil(user_id):
 
 
 def obter_ranking(user_id):
-    return r.zrange(f"usuario:{user_id}:ranking", 0, -1, withscores=True)
+    return r.zrange(f"usuario:{user_id}:ranking_Filmes", 0, -1, withscores=True)
 
 
 def exibir_usuario(user_id):
